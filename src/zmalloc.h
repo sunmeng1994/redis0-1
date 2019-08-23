@@ -30,7 +30,7 @@
 
 #ifndef __ZMALLOC_H
 #define __ZMALLOC_H
-static changeIntTo999(int*a)
+static void changeIntTo999(int*a)
 {
 	*a = 999;
 }
