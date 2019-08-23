@@ -34,8 +34,11 @@
 /* Double expansion needed for stringification of macro values. */
 #define __xstr(s) __str(s)
 #define __str(s) #s
-
+int usetcmallocFlag = 0;
+int usejemallocFlag = 0;
+int appleFlag=0;
 #if defined(USE_TCMALLOC)
+usetcmallocFlag=999;
 #define ZMALLOC_LIB ("tcmalloc-" __xstr(TC_VERSION_MAJOR) "." __xstr(TC_VERSION_MINOR))
 #include <google/tcmalloc.h>
 #if (TC_VERSION_MAJOR == 1 && TC_VERSION_MINOR >= 6) || (TC_VERSION_MAJOR > 1)
@@ -46,6 +49,7 @@
 #endif
 
 #elif defined(USE_JEMALLOC)
+usejemallocFlag=999;
 #define ZMALLOC_LIB ("jemalloc-" __xstr(JEMALLOC_VERSION_MAJOR) "." __xstr(JEMALLOC_VERSION_MINOR) "." __xstr(JEMALLOC_VERSION_BUGFIX))
 #include <jemalloc/jemalloc.h>
 #if (JEMALLOC_VERSION_MAJOR == 2 && JEMALLOC_VERSION_MINOR >= 1) || (JEMALLOC_VERSION_MAJOR > 2)
@@ -56,12 +60,14 @@
 #endif
 
 #elif defined(__APPLE__)
+appleFlag=999;
 #include <malloc/malloc.h>
 #define HAVE_MALLOC_SIZE 1
 #define zmalloc_size(p) malloc_size(p)
 #endif
-
+int zmalloclibFlag = 0;
 #ifndef ZMALLOC_LIB
+zmalloclibFlag =999;
 #define ZMALLOC_LIB "libc"
 #endif
 
@@ -77,8 +83,9 @@ float zmalloc_get_fragmentation_ratio(size_t rss);
 size_t zmalloc_get_rss(void);
 size_t zmalloc_get_private_dirty(void);
 void zlibc_free(void *ptr);
-
+int havaMallocSizeFlag = 0;
 #ifndef HAVE_MALLOC_SIZE
+havaMallocSizeFlag = 999;
 size_t zmalloc_size(void *ptr);
 #endif
 
