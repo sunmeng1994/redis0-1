@@ -5,13 +5,23 @@
 //int appleFlag = 0;
 //int zmalloclibFlag = 0;
 //int havaMallocSizeFlag = 0;
+void checkdefine1()
+{
+#ifdef HAVE_MALLOC_SIZE
+	printf("have malloc size\n");
+	#define PREFIX_SIZE (0)
+#else
+	#if defined(__sun) || defined(__sparc) || defined(__sparc__)
+		#define PREFIX_SIZE (sizeof(long long))
+		printf("have son or sparc\n");
+	#else
+		#define PREFIX_SIZE (sizeof(size_t))
+		printf("havenothing");
+	#endif
+#endif
+}
 int main()
 {
-	printf("usetcmallocFlag:%d\n", usetcmallocFlag);
-	printf("usejemallocFlag:%d\n", usejemallocFlag);
-	printf("appleFlag:%d\n", appleFlag);
-	printf("zmalloclibFlag:%d\n", zmalloclibFlag);
-	printf("havaMallocSizeFlag:%d\n", havaMallocSizeFlag);
-	printf("hello world\n");
+	checkdefine1();
 	return 0;
 }
