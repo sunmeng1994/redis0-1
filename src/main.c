@@ -5,6 +5,10 @@
 //int appleFlag = 0;
 //int zmalloclibFlag = 0;
 //int havaMallocSizeFlag = 0;
+struct FuckStruct{
+	int a;
+	int b;
+};
 void checkdefine1()
 {
 #ifdef HAVE_MALLOC_SIZE
@@ -20,8 +24,16 @@ void checkdefine1()
 	#endif
 #endif
 }
+void PrintPrefixSize()
+{
+	printf("%d", PREFIX_SIZE);
+}
+void checkZmalloc1()
+{
+
+}
 int main()
 {
-	checkdefine1();
+	PrintPrefixSize();
 	return 0;
 }
