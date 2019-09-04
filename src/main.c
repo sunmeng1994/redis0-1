@@ -44,6 +44,7 @@ void CheckRssDefine()
 }
 int main()
 {
-	PrintPrefixSize();
+	//PrintPrefixSize();
+	CheckRssDefine();
 	return 0;
 }
