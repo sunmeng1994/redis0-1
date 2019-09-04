@@ -88,7 +88,8 @@ void zlibc_free(void *ptr) {
 
 #define update_zmalloc_stat_alloc(__n) do { \
     size_t _n = (__n); \
-    if (_n&(sizeof(long)-1)) _n += sizeof(long)-(_n&(sizeof(long)-1)); \
+    if (_n&(sizeof(long)-1)) \
+		_n += sizeof(long)-(_n&(sizeof(long)-1)); \
     if (zmalloc_thread_safe) { \
         update_zmalloc_stat_add(_n); \
     } else { \
@@ -207,7 +208,7 @@ void zfree(void *ptr) {
     free(realptr);
 #endif
 }
-
+//申请动态空间复制字符串并返回地址
 char *zstrdup(const char *s) {
     size_t l = strlen(s)+1;
     char *p = zmalloc(l);

@@ -26,11 +26,21 @@ void checkdefine1()
 }
 void PrintPrefixSize()
 {
-	printf("%d", PREFIX_SIZE);
+	printf("%d\n", PREFIX_SIZE);
 }
 void checkZmalloc1()
 {
 
+}
+void CheckRssDefine()
+{
+#if defined(HAVE_PROC_STAT)
+	printf("define HAVE_PROC_STAT\n");
+#elif defined(HAVE_TASKINFO)
+	printf("define HAVE_TASKINFO\n");
+#else
+
+#endif
 }
 int main()
 {
