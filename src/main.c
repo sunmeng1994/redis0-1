@@ -51,10 +51,15 @@ void sds2()
 {
 	sds1("", 0);
 }
+void sds3()
+{
+	sds1("", 0);
+}
 int main()
 {
 	//PrintPrefixSize();
 	//CheckRssDefine();
 	sds2();
+	sds3();
 	return 0;
 }
