@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "zmalloc.h"
+#include "sds.h"
 //int usetcmallocFlag = 0;
 //int usejemallocFlag = 0;
 //int appleFlag = 0;
@@ -42,9 +43,18 @@ void CheckRssDefine()
 
 #endif
 }
+void sds1(const void*init,int len)
+{
+	printf("%d\n", init);
+}
+void sds2()
+{
+	sds1("", 0);
+}
 int main()
 {
 	//PrintPrefixSize();
-	CheckRssDefine();
+	//CheckRssDefine();
+	sds2();
 	return 0;
 }
